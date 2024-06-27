@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Individual Hotel Reviews</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Individual Hotel Reviews</h1>
+    {% for review in hotel_reviews %}
+    <p>{{ review }}</p>
+    <hr>
+    {% endfor %}
+</body>
+</html>

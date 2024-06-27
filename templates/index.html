@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Trove - Fake Review Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Trip Trove - Fake Review Detection</h1>
+    <form action="/detect_fake_review" method="post">
+        <label for="review_text">Enter your review:</label><br>
+        <textarea id="review_text" name="review_text" rows="4" cols="50"></textarea><br>
+        <input type="submit" value="Detect Fake Review">
+    </form>
+    {% if result %}
+    <div id="result">
+        <p>{{ result }}</p>
+    </div>
+    {% endif %}
+    <br>
+    <a href="/hotel_reviews">Click here to see hotel reviews</a>
+</body>
+</html>

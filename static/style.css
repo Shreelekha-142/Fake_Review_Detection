@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+}
+
+form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+textarea {
+    width: 80%;
+    margin-bottom: 10px;
+}
+
+#result {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+#hotel_reviews {
+    margin-top: 20px;
+}
+
+.hotel {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.hotel h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.hotel ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.hotel ul li {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+/* Add to style.css */
+.hotel img {
+    width: 100px;
+    height: 75px;
+}

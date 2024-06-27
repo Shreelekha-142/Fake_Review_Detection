@@ -1,0 +1,73 @@
+<!-- hotel_reviews.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Trove - Hotel Reviews</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Trip Trove - Hotel Reviews</h1>
+    <div id="filters">
+        <select id="deceptive_filter">
+            <option value="">Deceptive Filter</option>
+            {% for option in filters.deceptive %}
+            <option value="{{ option }}">{{ option.capitalize() }}</option>
+            {% endfor %}
+        </select>
+        <select id="polarity_filter">
+            <option value="">Polarity Filter</option>
+            {% for option in filters.polarity %}
+            <option value="{{ option }}">{{ option.capitalize() }}</option>
+            {% endfor %}
+        </select>
+        <select id="source_filter">
+            <option value="">Source Filter</option>
+            {% for option in filters.source %}
+            <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div id="hotel_list">
+        {% for hotel, info in hotel_info_dict.items() %}
+        <div class="hotel">
+            <img src="{{ url_for('static', filename=info.image) }}" alt="{{ hotel }}">
+            <h2>{{ hotel }}</h2>
+            <div class="reviews" style="display: none;">
+                {% for review in info.reviews %}
+                <div class="review {{ review.deceptive }} {{ review.polarity }} {{ review.source }}">
+                    <p>{{ review.text }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <script>
+        $(document).ready(function() {
+            // Toggle display of reviews on hotel click
+            $(".hotel h2").click(function() {
+                $(this).siblings('.reviews').toggle();
+            });
+    
+            // Filter reviews based on selected options
+            $("#deceptive_filter, #polarity_filter, #source_filter").change(function() {
+                var deceptive = $("#deceptive_filter").val().toLowerCase();
+                var polarity = $("#polarity_filter").val().toLowerCase();
+                var source = $("#source_filter").val().toLowerCase();
+                
+                $(".review").hide();
+                $(".review").filter(function() {
+                    var matchesDeceptive = deceptive ? $(this).hasClass(deceptive) : true;
+                    var matchesPolarity = polarity ? $(this).hasClass(polarity) : true;
+                    var matchesSource = source ? $(this).hasClass(source) : true;
+                    return matchesDeceptive && matchesPolarity && matchesSource;
+                }).show();
+            });
+        });
+    </script>
+</body>
+</html>
